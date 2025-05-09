@@ -37,13 +37,13 @@ public class SoundMufflerMachine extends SlimefunItem implements EnergyNetCompon
         super(SoundMuffler.SOUND_MUFFLER,
             new SlimefunItemStack(ITEM_ID, Material.WHITE_CONCRETE, ITEM_NAME,
                 "", "&7Muffles all sound in a", "&78 block radius", "", "&e\u26A1 Requires power to use"
-            ),
+            ).item(),
             ITEM_ID,
             RecipeType.ENHANCED_CRAFTING_TABLE,
             new ItemStack[] {
-                new ItemStack(Material.WHITE_WOOL), SlimefunItems.STEEL_PLATE, new ItemStack(Material.WHITE_WOOL),
-                SlimefunItems.STEEL_PLATE, SlimefunItems.ELECTRIC_MOTOR, SlimefunItems.STEEL_PLATE,
-                new ItemStack(Material.WHITE_WOOL), SlimefunItems.STEEL_PLATE, new ItemStack(Material.WHITE_WOOL)
+                new ItemStack(Material.WHITE_WOOL), SlimefunItems.STEEL_PLATE.item(), new ItemStack(Material.WHITE_WOOL),
+                SlimefunItems.STEEL_PLATE.item(), SlimefunItems.ELECTRIC_MOTOR.item(), SlimefunItems.STEEL_PLATE.item(),
+                new ItemStack(Material.WHITE_WOOL), SlimefunItems.STEEL_PLATE.item(), new ItemStack(Material.WHITE_WOOL)
             }
 
         );
@@ -69,9 +69,9 @@ public class SoundMufflerMachine extends SlimefunItem implements EnergyNetCompon
                     enabled = Boolean.parseBoolean(BlockStorage.getLocationInfo(b.getLocation(), "enabled"));
                 }
 
-                menu.replaceExistingItem(8, new CustomItemStack((enabled ? Material.REDSTONE : Material.GUNPOWDER),
+                menu.replaceExistingItem(8, CustomItemStack.create((enabled ? Material.REDSTONE : Material.GUNPOWDER),
                     "&7Enabled: " + (enabled ? "&a✔" : "&4✘"), "", "&e> Click to enable this Machine"));
-                menu.replaceExistingItem(0, new CustomItemStack(Material.PAPER,
+                menu.replaceExistingItem(0, CustomItemStack.create(Material.PAPER,
                     "&eVolume: &b" + volume,
                     "&7Valid value range: 0-100",
                     "&7L-click: -10",
@@ -125,7 +125,7 @@ public class SoundMufflerMachine extends SlimefunItem implements EnergyNetCompon
 
     protected void constructMenu(BlockMenuPreset preset) {
         for (int i : border) {
-            preset.addItem(i, new CustomItemStack(Material.GRAY_STAINED_GLASS_PANE, " "),
+            preset.addItem(i, CustomItemStack.create(Material.GRAY_STAINED_GLASS_PANE, " "),
                 (player, i1, itemStack, clickAction) -> false);
         }
     }
